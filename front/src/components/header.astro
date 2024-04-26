@@ -1,0 +1,39 @@
+---
+import Options from "./icons/options.astro"
+import Qr from "./icons/qr.astro"
+import RedditIcon from "./icons/redditIcon.astro"
+import Search from "./icons/search.astro"
+
+import ActivarLogin from "./activarLogin.svelte"
+---
+
+<div class="mt-5 pb-5 w-full border-b border-white flex justify-between items-center">
+  <!-- logo -->
+  <div class="pl-5 text-white text-3xl font-bold flex flex-row justify-center items-center gap-x-2">
+    <RedditIcon></RedditIcon>
+    reddit
+  </div>
+
+  <!-- buscador -->
+  <div class="flex flex-row justify-center items-center gap-x-2">
+    <input type="text" name="" id="" class="rounded-2xl w-[40vw] pl-5 py-2 bg-[#1A282D] text-gray-500 " placeholder="Buscar" >
+    <button class="rounded-r-lg ">
+      <Search></Search>
+    </button>
+  </div>
+
+  
+  <!--opciones descarga iniciar sesion y puntos... -->
+  <div class="flex flex-row gap-x-3 pr-5 text-white">
+    <button class="rounded-2xl px-4 py-2 flex justify-center items-center gap-x-1 bg-[#223237] hover:bg-[#212e32]">
+      <Qr></Qr>
+      Descargar app
+    </button>
+
+    <ActivarLogin client:load />
+
+    <button class="rounded-full p-3 hover:bg-[#212e32]">
+      <Options></Options>
+    </button>
+  </div>
+</div>
