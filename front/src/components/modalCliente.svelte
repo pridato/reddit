@@ -1,33 +1,22 @@
 <script lang="ts">
-  import { springUrl } from '../globales'
-  import type { Usuario }  from '../models/usuario'
+  import { loginRest } from '../services/peticiones'
+  import type { Usuario } from "../models/usuario"
+  import { _usuario } from '../services/estadoGlobal'
+
   export let closeModal: () => void;
 
   async function login() {
 
-    // leemos los dos valores del input para enviar x fetch a spring
     const email = document.querySelector("#email") as HTMLInputElement
     const password = document.querySelector("#password") as HTMLInputElement
 
-    try {
-      // peticion a spring para obtener el usuario
-      const response: Response = await fetch(`${springUrl}/Cliente/login?email=${email.value}&password=${password.value}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      console.log(response)
-      if(response.ok) {
-        const usuario:Usuario = await response.json()
-        console.log(usuario)
-      }
-
-    } catch(error){
-      console.log(error)
-    }
+    let usuario:Usuario = await loginRest(email.value, password.value)
+    // actualizamos estado general de loggedIn
+    _usuario.update((data) => (data = usuario))
     closeModal()
   }
+
+  
 
 </script>
 
