@@ -14,8 +14,9 @@ public class ClienteController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public Usuario login(@RequestParam String email, @RequestParam String password) {
+
         return this.usuarioService.login(email, password);
     }
 

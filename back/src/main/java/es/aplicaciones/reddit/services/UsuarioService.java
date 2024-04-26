@@ -18,6 +18,7 @@ public class UsuarioService {
      * @return objeto usuario a front
      */
     public Usuario login(String email, String password) {
+        System.out.println(this.usuarioRepository.findByEmailAndPassword(email, password));
         return this.usuarioRepository.findByEmailAndPassword(email, password);
     }
 }

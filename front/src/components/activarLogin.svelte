@@ -9,6 +9,7 @@
     const loginButton = document.querySelector('#login')
 
     loginButton?.addEventListener( 'click', () => {
+      
       isModalOpen = true
     })
   })

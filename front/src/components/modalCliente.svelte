@@ -1,7 +1,31 @@
 <script lang="ts">
+  import { springUrl } from '../globales'
+  import type { Usuario }  from '../models/usuario'
   export let closeModal: () => void;
 
-  function login() {
+  async function login() {
+
+    // leemos los dos valores del input para enviar x fetch a spring
+    const email = document.querySelector("#email") as HTMLInputElement
+    const password = document.querySelector("#password") as HTMLInputElement
+
+    try {
+      // peticion a spring para obtener el usuario
+      const response: Response = await fetch(`${springUrl}/Cliente/login?email=${email.value}&password=${password.value}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      console.log(response)
+      if(response.ok) {
+        const usuario:Usuario = await response.json()
+        console.log(usuario)
+      }
+
+    } catch(error){
+      console.log(error)
+    }
     closeModal()
   }
 
@@ -54,8 +78,8 @@
 
   <!-- formulario correo y contraseña -->
   <form action="" class="my-14 flex flex-col gap-y-5 justify-center items-center w-full">
-    <input class="bg-[#1A282D] w-full py-2 p-2 rounded-2xl" type="text" name="" id="" placeholder="Correo electrónico ">
-    <input class="bg-[#1A282D] w-full py-2 p-2 rounded-2xl" type="text" name="" id="" placeholder="Contraseña ">
+    <input class="bg-[#1A282D] w-full py-2 p-2 rounded-2xl" type="email" name="" id="email" placeholder="Correo electrónico ">
+    <input class="bg-[#1A282D] w-full py-2 p-2 rounded-2xl" type="password" name="" id="password" placeholder="Contraseña ">
   </form>
 
   <!-- opciones recuperar password y registro-->
@@ -72,3 +96,4 @@
   </div>
   
 </div>
+
