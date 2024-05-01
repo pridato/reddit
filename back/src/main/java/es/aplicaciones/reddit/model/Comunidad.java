@@ -18,4 +18,5 @@ public class Comunidad {
     private String nombre;
     private int participantes;
     private List<String> posts; // lista de los id de cada post
+    private String imagen;
 }

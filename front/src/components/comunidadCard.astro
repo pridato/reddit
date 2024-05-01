@@ -1,0 +1,19 @@
+---
+import type { Comunidad } from "../models/comunidad"
+
+interface Props {
+  comunidad:Comunidad
+}
+
+const {comunidad} = Astro.props
+---
+
+<div class="mt-5 pl-5 py-1 flex items-start justify-start w-full rounded-sm cursor-pointer hover:bg-[#1A282D]">
+  <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+    <img class="w-full h-full object-cover" src={comunidad.imagen} alt="">
+  </div>
+  <div class="flex flex-col text-[#B7C4C8] text-sm">
+    <p>r/{comunidad.nombre}</p>
+    <span class="text-[#3A464A]">{comunidad.participantes} miembros</span>
+  </div>
+</div>

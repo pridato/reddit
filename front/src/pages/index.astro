@@ -1,13 +1,32 @@
 ---
 import Navbar from '../components/navbar.astro';
 import Layout from '../layouts/Layout.astro';
-
+import Comunidades from '../components/comunidades.astro';
 ---
 
 <Layout title="Reddit - Explora lo que quieras">
-	<Navbar></Navbar>
+	<div id="app" class="text-white">
+		<aside class="[grid-area:aside]">
+			<Navbar></Navbar>
+		</aside>
+		<div class="ml-40 [grid-area:images">imagenes</div>
+		<div class="ml-40 [grid-area:posts]">
+			posts
+		</div>
+		<div class="[grid-area:comunidades]">
+			<Comunidades></Comunidades>
+		</div>
+		<div class="[grid-area:white]"></div>
+	</div>
 </Layout>
 
 <style>
-	
+	#app {
+		display: grid;
+		grid-template-areas:
+			"aside images images white"
+			"aside posts comunidades white";
+		grid-template-rows: 0.5fr 2fr 1fr 1fr;
+		grid-template-columns: 1fr 2fr 1fr 1fr;
+	}
 </style>

@@ -1,6 +1,5 @@
 <script lang="ts">
   export let seleccionado:boolean = false
-  console.log(seleccionado)
 </script>
 
 {#if seleccionado}

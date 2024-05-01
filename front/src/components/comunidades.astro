@@ -1,0 +1,17 @@
+---
+import { springUrl } from "../globales"
+import type { Comunidad } from "../models/comunidad"
+import ComunidadCard from './comunidadCard.astro'
+
+const response = await fetch(`${springUrl}/Comunidad/comunidades`)
+const comunidades:Comunidad[] = await response.json() as Comunidad[]
+
+---
+
+  <div class="text-white bg-[#030909] flex flex-col justify-center items-start p-2 rounded-lg">
+    <span class="ml-2 mt-2 text-[#82959B]">COMUNIDADES POPULARES</span>
+    {
+      comunidades.map(comunidad =>  <ComunidadCard comunidad={comunidad} /> ) 
+    }
+  </div>
+ 

@@ -3,5 +3,6 @@ export interface Comunidad {
   nombre: string,
   participantes: number,
   posts: string[],
-  fecha_creacion: Date
+  fecha_creacion: Date,
+  imagen: string
 }
