@@ -1,0 +1,67 @@
+---
+import type { Post } from "../models/post"
+import { springUrl } from "../globales"
+import Options from "./icons/options.astro"
+
+interface Props {
+  post:Post
+}
+
+const {post} = Astro.props
+
+// de cada post hay que hacer una petición para la comunidad a partir del id
+const comunidad = await fetch(`${springUrl}/Comunidad/comunidad?id=${post.id_comunidad}`).then(res => res.json())
+
+// calcular la distancia de tiempo desde la publicación
+const tiempo = post.fecha_publicacion ? new Date(post.fecha_publicacion).getTime() : new Date().getTime()
+// calcular el tiempo en horas
+let horas = Math.floor((new Date().getTime() - tiempo) / 1000 / 60 / 60)
+let minutos
+// si las horas son 0 calcular los minutos
+if(horas === 0) {
+  minutos = Math.floor((new Date().getTime() - tiempo) / 1000 / 60)
+}
+---
+
+<div class="mt-2 px-5 py-2 flex flex-col justify-center items-start w-full hover:bg-[#1A282D] cursor-pointer rounded-lg">
+  <!-- título con la info... -->
+  <div class="flex flex-row justify-between items-center w-full">
+    <!-- comunidad -->
+    <div class="flex flex-row justify-center items-center">
+      <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
+        <img class="w-full h-full object-cover" src={comunidad.imagen} alt="">
+      </div>
+
+      <a href={`comunidad/${comunidad.id}`} class="text-lg font-bold text-[#B7C4C8] hover:text-blue-200">{comunidad.nombre}</a>
+      <span class="text-sm ml-3 text-[#3A464A]">•</span>
+      { 
+        horas > 0 ? 
+        <span class="text-sm ml-3 text-[#3A464A]">Hace {horas} horas</span> : 
+        <span class="text-sm ml-3 text-[#3A464A]">Hace {minutos} minutos</span>
+      }
+    </div>
+
+    <!-- acciones  -->
+    <div class="flex flex-row gap-x-2">
+      <button class="bg-[#0045AC] hover:bg-[#517cc3] px-5 text-sm rounded-xl">
+        Unirse
+      </button>
+      <button class="rounded-full p-1 hover:bg-[#212e32]">
+        <Options></Options>
+      </button>
+    </div>
+  </div>
+
+  <!-- contenido -->
+  <div class="text-white mt-5">
+    <h4 class="mb-2">{post.nombre}</h4>
+    {
+      post.imagen ?
+        <img src={post.imagen} alt="">
+      :
+      <div></div>
+    }
+  </div>
+  
+  <!-- shared likes... -->
+</div>

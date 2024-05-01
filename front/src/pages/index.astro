@@ -2,18 +2,19 @@
 import Navbar from '../components/navbar.astro';
 import Layout from '../layouts/Layout.astro';
 import Comunidades from '../components/comunidades.astro';
+import Posts from '../components/posts.astro';
 ---
 
 <Layout title="Reddit - Explora lo que quieras">
 	<div id="app" class="text-white">
-		<aside class="[grid-area:aside]">
+		<aside class="[grid-area:aside] ">
 			<Navbar></Navbar>
 		</aside>
-		<div class="ml-40 [grid-area:images]"></div>
-		<div class="ml-40 [grid-area:posts]">
-			
+		<div class="ml-40 mr-40 [grid-area:images] "></div>
+		<div class="ml-40  [grid-area:posts] ">
+			<Posts></Posts>
 		</div>
-		<div class="[grid-area:comunidades]">
+		<div class="[grid-area:comunidades] mr-40">
 			<Comunidades></Comunidades>
 		</div>
 		<div class="[grid-area:white]"></div>
@@ -25,10 +26,10 @@ import Comunidades from '../components/comunidades.astro';
 		gap: 10px;
 		display: grid;
 		grid-template-areas:
-			"aside images images images      white"
-			"aside posts  posts  comunidades white"
-			"aside posts  posts  comunidades white";
-		grid-template-rows: auto;
-		grid-template-columns: repeat(5, 1fr); 
+			"aside images images images     "
+			"aside posts  posts  comunidades"
+			"aside posts  posts  comunidades";
+			grid-template-rows: 1fr 2fr 1fr;
+		grid-template-columns: repeat(4, 1fr); 
 	}
 </style>

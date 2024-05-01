@@ -13,7 +13,20 @@ public class ComunidadService {
     @Autowired
     private ComunidadRepository comunidadRepository;
 
+    /**
+     * metodo que devuelve la lista de todas las comunidades creadas
+     * @return
+     */
     public List<Comunidad> getComunidades() {
         return comunidadRepository.findAll();
+    }
+
+    /**
+     * metodo retorna una comunidad a partir de su id
+     * @param id
+     * @return
+     */
+    public Comunidad getComunidad(String id) {
+        return comunidadRepository.findById(id).orElse(null);
     }
 }

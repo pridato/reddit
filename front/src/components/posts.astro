@@ -1,0 +1,18 @@
+---
+import { springUrl } from "../globales"
+import type { Post } from "../models/post"
+import PostCard from "./postCard.astro"
+
+const response = await fetch(springUrl + "/post/get-posts")
+const posts: Post[] = await response.json()
+---
+
+  <div class="container text-white overflow-y-auto ">
+  {
+    posts.map((post) => (
+      <PostCard post={post} />
+    ))
+  }
+  </div>
+
+

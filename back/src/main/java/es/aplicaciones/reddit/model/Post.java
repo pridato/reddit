@@ -17,7 +17,9 @@ public class Post {
     @Id
     private String id;
     private String nombre;
+    private String cuerpo;
     private List<String> comentarios;
+    private String imagen;
     private int likes;
     private int dislikes;
     private Date fecha_publicacion;
