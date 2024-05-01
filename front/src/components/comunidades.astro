@@ -8,8 +8,8 @@ const comunidades:Comunidad[] = await response.json() as Comunidad[]
 
 ---
 
-  <div class="text-white bg-[#030909] flex flex-col justify-center items-start p-2 rounded-lg">
-    <span class="ml-2 mt-2 text-[#82959B]">COMUNIDADES POPULARES</span>
+  <div class="text-white pb-5 bg-[#030909] flex flex-col justify-center items-start p-2 rounded-lg">
+    <span class="ml-2 mt-2 mb-5 text-[#82959B]">COMUNIDADES POPULARES</span>
     {
       comunidades.map(comunidad =>  <ComunidadCard comunidad={comunidad} /> ) 
     }

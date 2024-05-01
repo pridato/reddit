@@ -8,7 +8,7 @@ interface Props {
 const {comunidad} = Astro.props
 ---
 
-<div class="mt-5 pl-5 py-1 flex items-start justify-start w-full rounded-sm cursor-pointer hover:bg-[#1A282D]">
+<a href={`comunidad/${comunidad.id}`} class="pl-5 py-1 flex items-start justify-start w-full rounded-sm cursor-pointer hover:bg-[#1A282D]">
   <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
     <img class="w-full h-full object-cover" src={comunidad.imagen} alt="">
   </div>
@@ -16,4 +16,4 @@ const {comunidad} = Astro.props
     <p>r/{comunidad.nombre}</p>
     <span class="text-[#3A464A]">{comunidad.participantes} miembros</span>
   </div>
-</div>
+</a>

@@ -9,9 +9,9 @@ import Comunidades from '../components/comunidades.astro';
 		<aside class="[grid-area:aside]">
 			<Navbar></Navbar>
 		</aside>
-		<div class="ml-40 [grid-area:images">imagenes</div>
+		<div class="ml-40 [grid-area:images]"></div>
 		<div class="ml-40 [grid-area:posts]">
-			posts
+			
 		</div>
 		<div class="[grid-area:comunidades]">
 			<Comunidades></Comunidades>
@@ -22,11 +22,13 @@ import Comunidades from '../components/comunidades.astro';
 
 <style>
 	#app {
+		gap: 10px;
 		display: grid;
 		grid-template-areas:
-			"aside images images white"
-			"aside posts comunidades white";
-		grid-template-rows: 0.5fr 2fr 1fr 1fr;
-		grid-template-columns: 1fr 2fr 1fr 1fr;
+			"aside images images images      white"
+			"aside posts  posts  comunidades white"
+			"aside posts  posts  comunidades white";
+		grid-template-rows: auto;
+		grid-template-columns: repeat(5, 1fr); 
 	}
 </style>
