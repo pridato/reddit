@@ -1,6 +1,7 @@
 import { springUrl } from "../globales"
 import type { Comunidad } from "../models/comunidad"
 import type { Noticia } from "../models/noticia"
+import type { Post } from "../models/post"
 import type { Usuario } from "../models/usuario"
 
 let usuario:Usuario
@@ -82,3 +83,29 @@ export async function obtenerComunidades() :Promise<Comunidad[]> {
 
   return data
 }
+
+/**
+ * Metodo para añadir like o dislike
+ * @returns Promise<Post>
+ */
+  export async function addLikeDislike(id:string, like:boolean) :Promise<Post> {
+    let data!:Post
+    console.log(`${springUrl}/post/toggle-like?id=${id}&like=${like}`)
+    try {
+      // peticion a spring para modificar los likes y dislikes
+      const response: Response = await fetch(`${springUrl}/post/toggle-like?id=${id}&like=${like}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      if(response.ok) {
+        data = await response.json()
+      }
+  
+    } catch(error){
+      console.log(error)
+    }
+  
+    return data
+  }

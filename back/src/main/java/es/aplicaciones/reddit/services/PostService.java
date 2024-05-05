@@ -25,4 +25,19 @@ public class PostService {
                 .collect(Collectors.toList());
 
     }
+
+    /**
+     * metodo para dar like o dislike a un post
+     * @param id
+     * @return
+     */
+    public Post toggleLike(String id, Boolean like) {
+        Post post = this.postRepository.findById(id).orElse(null);
+        if (post == null) {
+            return null;
+        }
+        // si like es false, se resta un like
+        post.setLikes(like ? post.getLikes() + 1 : post.getLikes() - 1);
+        return this.postRepository.save(post);
+    }
 }

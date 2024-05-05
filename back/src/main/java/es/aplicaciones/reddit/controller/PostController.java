@@ -4,10 +4,7 @@ import es.aplicaciones.reddit.model.Post;
 import es.aplicaciones.reddit.repositories.PostRepository;
 import es.aplicaciones.reddit.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,10 @@ public class PostController {
     @GetMapping("get-posts")
     public List<Post> ListgetPosts() {
         return this.postService.getPosts();
+    }
+
+    @GetMapping("toggle-like")
+    public Post toggleLike(@RequestParam String id, @RequestParam Boolean like) {
+        return this.postService.toggleLike(id, like);
     }
 }
